@@ -1,0 +1,29 @@
+# ================================
+# notification-ride-service
+# repurposed as driver/general notifier
+# ================================
+server:
+  http_port: "2222"
+  grpc_port: 5051
+  timeout_ms: 5000
+
+event_bus:
+  brokers:
+    - "nats://nats:4222"
+  group: "notification-ride-service-group"
+  driver_general_topic: "driver.general.notifications"
+  general_topic: "general.notifications"
+
+mqtt:
+  broker: "tcp://mqtt-broker:1883"
+  driver_topic: "ui/driver/general"
+  general_topic: "ui/general/notification"
+  secure: false
+
+redis:
+  url: "redis:6379"
+  password: ""
+  db: 0
+  ttl: "30s"
+  keys:
+    notification_prefix: "notification:"
